@@ -66,4 +66,4 @@ jobs:
       - name: Release chart
         run: |
           helm package chart/ --version $BUILD_VERSION --app-version $BUILD_VERSION
-          helm push renovate-test-chart-$BUILD_VERSION.tgz oci://ghcr.io/stianfro
+          helm push renovate-test-$BUILD_VERSION.tgz oci://ghcr.io/stianfro/charts
