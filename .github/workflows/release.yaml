@@ -59,7 +59,7 @@ jobs:
           PACKAGE_NAME: github.com/stianfro/renovate-test
         run: |
           KO_DOCKER_REPO=${{ env.IMAGE_NAME }}
-          DIGEST=$(ko build ./cmd --bare -t $BUILD_VERSION | tee /dev/tty | grep -o 'sha256:[a-f0-9]\{64\}')
+          DIGEST=$(ko build --bare -t $BUILD_VERSION | tee /dev/tty | grep -o 'sha256:[a-f0-9]\{64\}')
           echo "IMAGE_DIGEST=$DIGEST" >> $GITHUB_ENV
 
       - name: Update manifests
