@@ -27,11 +27,6 @@ jobs:
       - name: Set up Ko
         uses: ko-build/setup-ko@v0.6
 
-      # - name: Set up oras
-      #   uses: oras-project/setup-oras@v1
-      #   with:
-      #     version: 1.2.0
-
       - name: Set up Helm
         uses: azure/setup-helm@v4.2.0
         with:
@@ -66,3 +61,9 @@ jobs:
         run: |
           kustomize edit set image controller=${{ env.IMAGE_NAME }}:$BUILD_VERSION@$IMAGE_DIGEST
           cat kustomization.yaml
+          kustomize build > chart/templates/manifest.yaml
+
+      - name: Release chart
+        run: |
+          helm package chart/ --version $BUILD_VERSION --app-version $BUILD_VERSION
+          helm push renovate-test-chart-$BUILD_VERSION.tgz oci://ghcr.io/stianfro

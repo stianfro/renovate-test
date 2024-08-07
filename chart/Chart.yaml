@@ -1,4 +1,4 @@
 apiVersion: v2
-name: renovate-test
-version: v1.2.3
-appVersion: v1.2.3
+name: renovate-test-chart
+version: v0.0.0
+appVersion: v0.0.0
